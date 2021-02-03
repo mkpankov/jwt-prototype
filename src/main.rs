@@ -102,6 +102,7 @@ fn main() {
         .decode(&signing_secret, SignatureAlgorithm::HS256)
         .unwrap();
     assert_eq!(*jws.payload().unwrap(), expected_claims);
+    jws.validate(Default::default()).unwrap();
     println!("Claims: {:?}", *jws.payload().unwrap());
 
     // Don't forget to increment the nonce!
